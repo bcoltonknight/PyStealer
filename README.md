@@ -9,3 +9,4 @@ To set up your environment just run ``pip install -r requirements.txt`` and in o
 * Chromium based saved browser information
 * OBS Stream keys
 * WPA Saved passwords
+* Saved SSH keys/data
