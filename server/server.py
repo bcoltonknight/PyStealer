@@ -2,6 +2,7 @@ import asyncio
 import base64
 import datetime
 import json
+import os.path
 
 
 async def handle_client(reader, writer):
@@ -54,4 +55,6 @@ def decode_data(data):
 
 
 if __name__ == '__main__':
+    if not os.path.exists('exfiled_data'):
+        os.mkdir('exfiled_data')
     asyncio.run(run_server())
