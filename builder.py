@@ -31,6 +31,8 @@ def xor(data, key):
 
 if __name__ == '__main__':
     args = init_args()
+    if not os.path.exists('compiled'):
+        os.mkdir('compiled')
     if not args.payload:
         server = input('C2 Server Address: ')
         port = input('C2 Server Port: ')
