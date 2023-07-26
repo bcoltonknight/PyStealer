@@ -24,7 +24,8 @@ def sandbox_check():
         "SANDBOX",
         "7SILVIA",
         "FORTINET",
-        "TEQUILABOOMBOOM"
+        "TEQUILABOOMBOOM",
+        "FLAREVM"
     ]
 
     if socket.gethostname in hostnames:
